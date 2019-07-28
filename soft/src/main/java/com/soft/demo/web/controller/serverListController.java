@@ -1,4 +1,4 @@
-package com.soft.demo.controller;
+package com.soft.demo.web.controller;
 
 import com.soft.demo.model.serverlist;
 import com.soft.demo.service.serverListService;
@@ -20,8 +20,6 @@ public class serverListController {
 
     @Autowired
     private serverListService serverListService;
-    
-
 
     @Value("${spring.application.name}")
     private String name;
@@ -80,6 +78,9 @@ public class serverListController {
         return basicResultVM;
     }
 
+    /**
+     * 控制台打印工程信息
+     */
     @GetMapping(value = "/getInfo")
     public void getInfo(){
         log.info("\n----------------------------------------------------------\n\t" +

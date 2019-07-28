@@ -17,6 +17,7 @@ import java.util.Date;
 @Slf4j
 public class serverListService {
 
+//    private static final Logger log = LoggerFactory.getLogger(serverListService.class);
     private static final Date date = new Date();
     private static final Integer isdelete = 0;
 
@@ -34,7 +35,7 @@ public class serverListService {
         if (id != null) {
             log.info("id:" + id);
             serverlist allById = serverListRepositiry.findAllById(id);
-            if (allById == null) {
+            if(allById == null){
                 throw new DataException();
             }
             return allById;

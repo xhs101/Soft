@@ -6,14 +6,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.core.env.Environment;
-import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.net.InetAddress;
 
 @SpringBootApplication
 @EnableDiscoveryClient
 @Slf4j
-@EnableScheduling //定时器
+//@EnableScheduling //定时器
 public class DemoApplication {
 
     private final Environment env;

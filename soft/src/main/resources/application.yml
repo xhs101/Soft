@@ -6,8 +6,8 @@ eureka:
     hostname: 127.0.0.1 #服务注册中心IP地址
     prefer-ip-address: true
   client:
-    registerWithEureka: true #是否向服务注册中心注册自己DESKTOP-JRLEENP
-    fetchRegistry: true #是否检索服务
+    registerWithEureka: false #是否向服务注册中心注册自己DESKTOP-JRLEENP
+    fetchRegistry: false #是否检索服务
     serviceUrl: #服务注册中心的配置内容，指定服务注册中心的位置
 #      defaultZone: http://127.0.0.1:8761/eureka/
       defaultZone: http://admin:${spring.security.user.password}@${eureka.instance.hostname}:8786/eureka/
@@ -27,8 +27,9 @@ spring:
 
   datasource:
     name: mydata
-    url: jdbc:mysql://101.132.174.234:3306/myit?serverTimezone=GMT%2B8&useSSL=false
-    username: sa
+#    url: jdbc:mysql://101.132.174.234:3306/myit?serverTimezone=GMT%2B8&useSSL=false
+    url: jdbc:mysql://47.102.136.174:3306/myit?serverTimezone=GMT%2B8&useSSL=false
+    username: myit
     password: abc.123
     # 使用druid数据源
     type: com.alibaba.druid.pool.DruidDataSource
@@ -49,7 +50,7 @@ mybatis:
 logging:
   level:
     ROOT: info
-    com.soft: debug
+    com.soft: info
   path: /test
   file: /project/applog/soft.log #日志路径
 #  config:

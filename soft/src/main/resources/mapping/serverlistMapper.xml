@@ -14,8 +14,4 @@
     <result column="aes" jdbcType="VARCHAR" property="aes" />
   </resultMap>
 
-  <select id="queryServers" resultType="com.soft.demo.mapper.serverlistMapper">
-    seslect * from t_cc_record_serverlist
-  </select>
-
 </mapper>
