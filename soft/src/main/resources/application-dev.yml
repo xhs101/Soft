@@ -1,0 +1,55 @@
+server:
+  port: 8089
+
+eureka:
+  instance:
+    hostname: 127.0.0.1 #服务注册中心IP地址
+    prefer-ip-address: true
+  client:
+    registerWithEureka: true #是否向服务注册中心注册自己DESKTOP-JRLEENP
+    fetchRegistry: true #是否检索服务
+    serviceUrl: #服务注册中心的配置内容，指定服务注册中心的位置
+#      defaultZone: http://127.0.0.1:8761/eureka/
+      defaultZone: http://admin:${spring.security.user.password}@${eureka.instance.hostname}:8786/eureka/
+
+spring:
+  application:
+    name: soft
+  security:
+    user:
+      name: admin
+      password: admin
+      roles: USER,ADMIN
+
+  datasource:
+    name: mydata
+    url: jdbc:mysql://101.132.174.234:3306/myit?serverTimezone=GMT%2B8&useSSL=false
+    username: sa
+    password: abc.123
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    database: MYSQL
+    show-sql: true
+
+mybatis:
+  mapper-locations: classpath:mapping/*.xml  #classpath就是应用程序resources的路径
+  type-aliases-package: com.soft.demo.model
+
+
+
+#打印sql语句
+logging:
+  level:
+    com:
+      soft:
+        demo:
+          mapper: info
+          service: info
+  path: /test
+  file: /project/applog/soft.log #日志路径
+  config:
+    classpath: logback.xml #日志配置文件
