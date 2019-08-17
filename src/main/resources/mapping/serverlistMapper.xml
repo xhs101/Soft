@@ -14,4 +14,7 @@
     <result column="aes" jdbcType="VARCHAR" property="aes" />
   </resultMap>
 
+  <select id="findServers" resultType="com.soft.demo.model.serverlist">
+    select * from  t_cc_record_serverlist
+  </select>
 </mapper>

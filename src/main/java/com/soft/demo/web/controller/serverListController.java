@@ -1,5 +1,7 @@
 package com.soft.demo.web.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.soft.demo.model.serverlist;
 import com.soft.demo.service.serverListService;
 import com.soft.demo.web.Dto.ServerDto;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/serverList")
@@ -74,6 +78,34 @@ public class serverListController {
             basicResultVM.setReturnCode(200);
             basicResultVM.setReturnDesc("删除成功！");
             basicResultVM.setReturnResult(null);
+        }
+        return basicResultVM;
+    }
+
+    /**
+     * mybatis分页查询
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @GetMapping(value = "/findPage")
+    public BasicResultVM findPage(Integer pageNum,Integer pageSize){
+        BasicResultVM basicResultVM = new BasicResultVM();
+        if(pageNum == null || pageSize == null){
+            throw new ParamException();
+        }else{
+            PageHelper.startPage(pageNum,pageSize);
+            List<serverlist> all = serverListService.findAll();
+            PageInfo pageInfo = new PageInfo<serverlist>(all);
+            if(all.size() > 0){
+                basicResultVM.setReturnCode(200);
+                basicResultVM.setReturnDesc("查询成功！");
+                basicResultVM.setReturnResult(pageInfo);
+            }else {
+                basicResultVM.setReturnCode(200);
+                basicResultVM.setReturnDesc("查询成功，暂无数据！");
+                basicResultVM.setReturnResult(null);
+            }
         }
         return basicResultVM;
     }

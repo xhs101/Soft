@@ -1,5 +1,6 @@
 package com.soft.demo.service;
 
+import com.soft.demo.mapper.serverlistMapper;
 import com.soft.demo.model.serverlist;
 import com.soft.demo.repository.serverListRepository;
 import com.soft.demo.web.Dto.ServerDto;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 
 @Service
@@ -23,6 +25,9 @@ public class serverListService {
 
     @Autowired
     private serverListRepository serverListRepositiry;
+
+    @Autowired
+    private serverlistMapper serverlistmapper;
 
 
     /**
@@ -123,5 +128,14 @@ public class serverListService {
             log.info("异常" + e);
             e.printStackTrace();
         }
+    }
+
+    /**
+     * mybatis分页查询
+     * @return
+     */
+    public List<serverlist> findAll(){
+        List<serverlist> servers = serverlistmapper.findServers();
+        return servers;
     }
 }
