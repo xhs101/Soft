@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soft.demo.mapper.serverlistMapper">
+  <resultMap id="BaseResultMap" type="com.soft.demo.model.serverlist">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="server_name" jdbcType="VARCHAR" property="serverName" />
+    <result column="port" jdbcType="INTEGER" property="port" />
+    <result column="server_url" jdbcType="VARCHAR" property="serverUrl" />
+    <result column="server_username" jdbcType="VARCHAR" property="serverUsername" />
+    <result column="server_password" jdbcType="VARCHAR" property="serverPassword" />
+    <result column="is_deleted" jdbcType="INTEGER" property="isDeleted" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modified_time" jdbcType="TIMESTAMP" property="modifiedTime" />
+    <result column="aes" jdbcType="VARCHAR" property="aes" />
+  </resultMap>
+
+  <select id="findServers" resultType="com.soft.demo.model.serverlist">
+    select * from  t_cc_record_serverlist
+  </select>
+</mapper>
