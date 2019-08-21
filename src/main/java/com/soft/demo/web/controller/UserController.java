@@ -20,6 +20,12 @@ public class UserController {
 
     private static final  BasicResultVM rest = new BasicResultVM();
 
+    /**
+     * 登录验证
+     * @param userName 账号
+     * @param password 密码
+     * @return
+     */
     @GetMapping(value = "/login")
     public BasicResultVM login(String userName,String password){
         if(userName == null || "".equals(userName)){

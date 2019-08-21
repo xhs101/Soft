@@ -16,6 +16,12 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    /**
+     * 登录验证
+     * @param account 账号
+     * @param password 密码
+     * @return
+     */
     public UserEntity fiandAccount(String account, String password) {
         // 根据账号查询
         UserEntity allByAccount = userRepository.findAllByAccountAndPassword(account,password);
