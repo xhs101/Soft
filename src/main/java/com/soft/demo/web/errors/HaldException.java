@@ -15,6 +15,7 @@ public class HaldException {
     @ExceptionHandler({com.soft.demo.web.exceptions.ParamException.class})
     @ResponseBody
     public Map<String,String> ParamException(Exception e){
+        map.put("returnCode","0");
         map.put("solution", "请填写正确的参数");
         map.put("description", "参数异常");
         return map;
@@ -24,6 +25,7 @@ public class HaldException {
     @ExceptionHandler({com.soft.demo.web.exceptions.DataException.class})
     @ResponseBody
     public Map<String,String> DataException(Exception e){
+        map.put("returnCode","0");
         map.put("description", "数据不存在");
         map.put("solution", "请填写有效的参数");
         return map;

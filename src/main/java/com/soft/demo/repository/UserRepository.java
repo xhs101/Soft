@@ -17,4 +17,11 @@ public interface UserRepository extends JpaRepository<UserEntity,Integer>, JpaSp
      * @return
      */
     UserEntity findAllByAccountAndPassword(String account,String password);
+
+    /**
+     * 验证用户名是否存在
+     * @param account
+     * @return
+     */
+    UserEntity findAllByAccount(String account);
 }

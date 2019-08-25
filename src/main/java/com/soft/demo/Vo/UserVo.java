@@ -26,13 +26,13 @@ public class UserVo {
     private String name;
 
     // 电话
-    private Integer phone;
+    private String phone;
 
     // 用户名
     private String email;
 
     // 生日
-    private Date birthday;
+    private String birthday;
 
     // 地址
     private String address;
@@ -50,5 +50,5 @@ public class UserVo {
     private String update_author;
 
     // 是否有效
-    private Integer is_delete;
+    private int is_delete;
 }

@@ -11,9 +11,7 @@ import java.util.Date;
 @Table(name = "e_dish_user")
 public class UserEntity extends BaseModel<Integer> {
     @Id
-    // 主键自增长
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Integer id;
+    private String id;
 
     // 账号
     private String account;
@@ -25,7 +23,7 @@ public class UserEntity extends BaseModel<Integer> {
     private String name;
 
     // 电话
-    private Integer phone;
+    private String phone;
 
     // 用户名
     private String email;
