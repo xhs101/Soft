@@ -11,11 +11,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping(value = "/timeList")
@@ -26,10 +28,20 @@ public class TimeController {
     private TimeService timeService;
     @Autowired
     private TimeRepository timeRepository;
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @GetMapping(value = "/queryTime")
     public BasicResultVM queryTime(String AppId) {
         BasicResultVM basicResultVM = new BasicResultVM();
+        Boolean hasKey = redisTemplate.hasKey(AppId);
+        if(hasKey){
+            Object o = redisTemplate.opsForValue().get(AppId);
+            basicResultVM.setReturnCode(200);
+            basicResultVM.setReturnDesc("从redis中获取服务时间成功！");
+            basicResultVM.setReturnResult(o);
+            return basicResultVM;
+        }
             if ("".equals(AppId)) {
                 throw new ParamException();
             } else {
@@ -40,6 +52,7 @@ public class TimeController {
                     basicResultVM.setReturnCode(200);
                     basicResultVM.setReturnDesc("获取服务时间成功！");
                     basicResultVM.setReturnResult(timeVos);
+                    redisTemplate.opsForValue().set(AppId,timeVos,60, TimeUnit.SECONDS);
                 }
             }
         return basicResultVM;

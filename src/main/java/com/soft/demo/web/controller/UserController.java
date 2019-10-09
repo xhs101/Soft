@@ -7,6 +7,7 @@ import com.soft.demo.web.VM.BasicResultVM;
 import com.soft.demo.web.exceptions.ParamException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 import tk.mybatis.mapper.util.StringUtil;
 
@@ -81,10 +82,6 @@ public class UserController {
 
     /**
      * 根据账号和用户名修改密码
-     *
-     * @param account  账号
-     * @param password 密码
-     * @param name     用户名
      * @return
      */
     @PostMapping(value = "/updatePwd")
