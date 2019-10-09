@@ -27,18 +27,17 @@ spring:
 
   datasource:
     name: mydata
-#    url: jdbc:mysql://101.132.174.234:3306/myit?serverTimezone=GMT%2B8&useSSL=false
-    url: jdbc:mysql://47.95.194.51:3306/demo_test?serverTimezone=GMT%2B8&useSSL=false
-    username: sja
-    password: Sja.
+    url: jdbc:mysql://localhost:3306/demo_test?serverTimezone=GMT%2B8&useSSL=false
+    username: root
+    password: 123456
     # 使用druid数据源
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   redis:
     port: 6379
-    password: sja123
-    host: 47.95.194.51
+    password: 123456
+    host: 127.0.0.1
 
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
